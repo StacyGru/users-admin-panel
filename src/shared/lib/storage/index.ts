@@ -1,1 +1,1 @@
-export * from "./users.storage.ts";
+export * from "./user.storage.ts";

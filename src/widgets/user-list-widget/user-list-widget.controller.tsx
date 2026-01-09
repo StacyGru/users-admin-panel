@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { CustomTable } from "shared/ui/table";
-import { getUserColumnList, getUserRowList } from "widgets/user-list-widget/model";
+import { getUserColumnList, getUserRowList, userTableStore } from "widgets/user-list-widget/model";
 import { userStore } from "entities/user/model";
 
 const UserListWidget = observer(() => {
@@ -9,7 +9,20 @@ const UserListWidget = observer(() => {
     userStore.loadUsers();
   }, []);
 
-  return <CustomTable columnList={getUserColumnList()} rowList={getUserRowList(userStore.users)} />;
+  const rows = getUserRowList(userStore.users);
+  const sortedRows = userTableStore.getSortedRows(rows);
+
+  const columns = getUserColumnList();
+
+  return (
+    <CustomTable
+      columnList={columns}
+      rowList={sortedRows}
+      sortColumn={userTableStore.sortColumn}
+      sortDirection={userTableStore.sortDirection}
+      onSortChange={userTableStore.setSort}
+    />
+  );
 });
 
 export { UserListWidget };

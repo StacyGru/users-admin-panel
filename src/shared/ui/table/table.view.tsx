@@ -5,30 +5,45 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import type { FC } from "react";
-import type { ITableColumn, ITableRow } from "shared/ui/table";
+import type { ITableColumn, ITableRow, TSortDirection } from "shared/ui/table";
+import { TableHeadCell } from "shared/ui/table/ui";
 
-interface IProps {
-  columnList: ITableColumn[];
-  rowList: ITableRow[];
+interface CustomTableProps<T extends ITableRow> {
+  columnList: Array<ITableColumn<T>>;
+  rowList: T[];
+  sortColumn?: keyof T | null;
+  sortDirection?: TSortDirection;
+  onSortChange?: (column: keyof T, direction: TSortDirection) => void;
 }
 
-const CustomTable: FC<IProps> = (props) => {
+const CustomTable = <T extends ITableRow>({
+  columnList,
+  rowList,
+  sortColumn,
+  sortDirection,
+  onSortChange
+}: CustomTableProps<T>) => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }}>
+      <Table>
         <TableHead>
           <TableRow>
-            {props.columnList.map((row) => (
-              <TableCell>{row.title}</TableCell>
+            {columnList.map((column) => (
+              <TableHeadCell<T>
+                key={String(column.name)}
+                column={column}
+                sortDirection={sortColumn === column.name ? (sortDirection ?? null) : null}
+                onSortChange={onSortChange}
+              />
             ))}
           </TableRow>
         </TableHead>
+
         <TableBody>
-          {props.rowList.map((row) => (
-            <TableRow key={row.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              {props.columnList.map((column) => (
-                <TableCell key={column.name}>{row[column.name as keyof typeof row]}</TableCell>
+          {rowList.map((row) => (
+            <TableRow key={row.id}>
+              {columnList.map((column) => (
+                <TableCell key={String(column.name)}>{String(row[column.name])}</TableCell>
               ))}
             </TableRow>
           ))}

@@ -1,20 +1,19 @@
 import * as React from "react";
 
-interface ITableColumn {
-  name: string;
+type TSortDirection = "asc" | "desc" | null;
+
+interface ITableColumn<T = any> {
+  name: keyof T;
   title: React.ReactNode;
-
   sortable?: boolean;
-  sort?: "asc" | "desc";
-
   isFilterActive?: boolean;
   renderFilter?: () => React.ReactNode;
 }
 
-type RowId = string | number;
+type TRowId = string | number;
 
 interface ITableRow {
-  id: RowId;
+  id: TRowId;
 }
 
-export type { ITableColumn, ITableRow, RowId };
+export type { ITableColumn, ITableRow, TRowId, TSortDirection };
