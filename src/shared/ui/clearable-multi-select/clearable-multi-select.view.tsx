@@ -42,9 +42,7 @@ const ClearableMultiSelect = <T extends string | number>({
     [options]
   );
 
-  const renderValue: SelectProps<T[]>["renderValue"] = (options) => {
-    const selectedOptions = options as T[];
-
+  const renderValue: SelectProps<T[]>["renderValue"] = () => {
     return (
       <Box
         sx={{
@@ -55,13 +53,14 @@ const ClearableMultiSelect = <T extends string | number>({
           overflowY: "auto"
         }}
       >
-        {selectedOptions.map((selectedOption) => (
+        {value.map((selectedOption) => (
           <Chip
             key={selectedOption}
             size="small"
             label={optionsMap.get(selectedOption) ?? selectedOption}
+            onMouseDown={(event) => event.stopPropagation()}
             onDelete={() => {
-              onChange(selectedOptions.filter((option) => option !== selectedOption));
+              onChange(value.filter((option) => option !== selectedOption));
             }}
           />
         ))}
