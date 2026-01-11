@@ -17,14 +17,14 @@ function createUserMock(): IUser {
   const sex = faker.person.sex() as "male" | "female";
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName(sex);
-  const fullName = `${firstName} ${lastName}`;
+  const fullName = `${lastName} ${firstName}`;
 
   const login = faker.internet.username({ firstName, lastName }).toLowerCase();
   const domain = faker.helpers.arrayElement(EMAIL_DOMAINS);
   const email = `${login}@${domain}`;
 
   return {
-    id: faker.number.int({ min: 100000, max: 999999 }),
+    id: faker.number.int({ min: 100000, max: 999999 }).toString(),
     name: fullName,
     email,
     role: faker.helpers.arrayElement([EUserRole.ADMIN, EUserRole.MANAGER, EUserRole.USER])

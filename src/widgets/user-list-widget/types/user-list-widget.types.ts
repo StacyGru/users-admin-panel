@@ -1,15 +1,21 @@
-import { type ReactNode } from "react";
 import type { ITableColumn, ITableRow } from "shared/ui/table";
+import { EUserRole } from "entities/user/model";
 
 interface IUserListWidgetRowModel extends ITableRow {
-  userId?: ReactNode;
-  name?: ReactNode;
-  email?: ReactNode;
-  role?: ReactNode;
+  name: string;
+  email: string;
+  role: EUserRole;
 }
 
 interface IUserListWidgetColumnModel<T extends ITableRow> extends Omit<ITableColumn, "name"> {
   name: keyof T;
 }
 
-export type { IUserListWidgetRowModel, IUserListWidgetColumnModel };
+interface IUserTableFilters {
+  id: string;
+  name: string;
+  email: string;
+  roles: EUserRole[];
+}
+
+export type { IUserListWidgetRowModel, IUserListWidgetColumnModel, IUserTableFilters };

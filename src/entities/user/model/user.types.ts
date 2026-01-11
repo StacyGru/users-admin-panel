@@ -4,12 +4,18 @@ enum EUserRole {
   ADMIN = "ADMIN"
 }
 
+const EUserRoleLabels: Record<EUserRole, string> = {
+  [EUserRole.USER]: "пользователь",
+  [EUserRole.MANAGER]: "менеджер",
+  [EUserRole.ADMIN]: "администратор"
+};
+
 interface IUser {
-  id: number;
+  id: string;
   name: string;
   email: string;
   role: EUserRole;
 }
 
-export { EUserRole };
+export { EUserRole, EUserRoleLabels };
 export type { IUser };

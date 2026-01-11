@@ -10,7 +10,7 @@ const UserListWidget = observer(() => {
   }, []);
 
   const rows = getUserRowList(userStore.users);
-  const sortedRows = userTableStore.getSortedRows(rows);
+  const sortedRows = userTableStore.getProcessedRows(rows);
 
   const columns = getUserColumnList();
 
