@@ -7,6 +7,11 @@ import { USERS_TEXTS } from "shared/config/texts";
 import { ClearableTextField } from "shared/ui/clearable-text-field";
 import { userTableStore } from "widgets/user-list-widget/model/user-list-widget.store.ts";
 import { ClearableMultiSelect, type SelectOption } from "shared/ui/clearable-multi-select";
+import Stack from "@mui/material/Stack";
+import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
+import IconButton from "@mui/material/IconButton";
+import { Tooltip } from "@mui/material";
+import { DeleteUserButton } from "features/delete-user/ui/button";
 
 const roleOptions: SelectOption<EUserRole>[] = Object.values(EUserRole).map((role) => ({
   value: role,
@@ -85,6 +90,22 @@ const getUserColumnList = (): Array<IUserListWidgetColumnModel<IUserListWidgetRo
           label={USERS_TEXTS.columns.role}
           sx={{ width: 300 }}
         />
+      )
+    },
+    {
+      name: "actions",
+      title: "",
+      render: (row: IUserListWidgetRowModel) => (
+        <Stack direction="row" spacing={1}>
+          {/* TODO: вынести в feature */}
+          <Tooltip title={USERS_TEXTS.rowActions.edit}>
+            <IconButton size="small" onClick={() => {}}>
+              <EditTwoToneIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+
+          <DeleteUserButton row={row} />
+        </Stack>
       )
     }
   ];

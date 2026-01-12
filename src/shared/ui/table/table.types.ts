@@ -12,10 +12,8 @@ interface ITableColumn<T = any> {
   renderFilter?: () => React.ReactNode;
 }
 
-type TRowId = string | number;
-
 interface ITableRow {
-  id: TRowId;
+  id: string;
 }
 
-export type { ITableColumn, ITableRow, TRowId, TSortDirection };
+export type { ITableColumn, ITableRow, TSortDirection };

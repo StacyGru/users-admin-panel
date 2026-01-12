@@ -15,6 +15,8 @@ class UserTableStore {
     roles: []
   };
 
+  deletingUserId: string | null = null;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -60,6 +62,14 @@ class UserTableStore {
     const filtered = this.getFilteredRows(rows);
     return this.getSortedRows(filtered);
   }
+
+  openDelete = (id: string) => {
+    this.deletingUserId = id;
+  };
+
+  closeDelete = () => {
+    this.deletingUserId = null;
+  };
 }
 
 export const userTableStore = new UserTableStore();

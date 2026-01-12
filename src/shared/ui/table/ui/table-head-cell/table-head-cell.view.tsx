@@ -10,6 +10,7 @@ import { USERS_TEXTS } from "shared/config/texts";
 import { Tooltip } from "@mui/material";
 import { FilterPopup } from "shared/ui/table/ui/filter-popup";
 import { blue } from "@mui/material/colors";
+import Typography from "@mui/material/Typography";
 
 interface TableHeadCellProps<T> {
   column: ITableColumn<T>;
@@ -48,7 +49,9 @@ const TableHeadCell = <T,>({ column, sortDirection, onSortChange }: TableHeadCel
       }}
     >
       <Stack direction="row" alignItems="center" spacing="15px">
-        <span>{column.title}</span>
+        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+          {column.title}
+        </Typography>
 
         <Stack direction="row">
           {column.sortable && (

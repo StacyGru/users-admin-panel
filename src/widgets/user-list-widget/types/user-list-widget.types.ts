@@ -8,7 +8,7 @@ interface IUserListWidgetRowModel extends ITableRow {
 }
 
 interface IUserListWidgetColumnModel<T extends ITableRow> extends Omit<ITableColumn, "name"> {
-  name: keyof T;
+  name: keyof T | "actions";
 }
 
 interface IUserTableFilters {

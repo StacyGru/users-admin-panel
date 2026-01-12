@@ -9,5 +9,9 @@ export const USERS_TEXTS = {
   columnActions: {
     sort: "Сортировать",
     filter: "Фильтровать"
+  },
+  rowActions: {
+    edit: "Редактировать",
+    delete: "Удалить"
   }
 } as const;

@@ -26,7 +26,7 @@ class UserStore {
     });
   }
 
-  removeUser(userId: number) {
+  removeUser(userId: string) {
     this.users = this.users.filter((user) => user.id !== userId);
   }
 
