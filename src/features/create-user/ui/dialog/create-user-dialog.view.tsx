@@ -45,7 +45,7 @@ const CreateUserDialog = observer(() => {
       <DialogTitle>Добавление пользователя</DialogTitle>
 
       <DialogContent>
-        <UserForm value={formData} onChange={setFormData} />
+        <UserForm value={formData} onChange={setFormData} onSubmit={handleSubmit} />
       </DialogContent>
 
       <DialogActions sx={{ px: 3, pb: 2 }}>
@@ -54,6 +54,7 @@ const CreateUserDialog = observer(() => {
         </Button>
         <Button onClick={handleSubmit} variant="outlined" color="success">
           Добавить
+        <Button form="user-form" type="submit" variant="outlined" color="success">
         </Button>
       </DialogActions>
     </Dialog>

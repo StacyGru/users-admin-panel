@@ -36,7 +36,7 @@ const EditUserDialog: FC<IProps> = observer(({ open, userId, onClose }) => {
       <DialogTitle>Редактирование пользователя</DialogTitle>
 
       <DialogContent>
-        <UserForm value={formData} onChange={setFormData} />
+        <UserForm value={formData} onChange={setFormData} onSubmit={handleSubmit} />
       </DialogContent>
 
       <DialogActions sx={{ px: 3, pb: 2 }}>
@@ -45,6 +45,7 @@ const EditUserDialog: FC<IProps> = observer(({ open, userId, onClose }) => {
         </Button>
         <Button onClick={handleSubmit} variant="outlined" color="success">
           Сохранить
+        <Button form="user-form" type="submit" variant="outlined" color="success">
         </Button>
       </DialogActions>
     </Dialog>
