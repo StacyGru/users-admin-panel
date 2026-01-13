@@ -55,7 +55,7 @@ const TableHeadCell = <T,>({ column, sortDirection, onSortChange }: TableHeadCel
 
         <Stack direction="row">
           {column.sortable && (
-            <Tooltip title={USERS_TEXTS.columnActions.sort}>
+            <Tooltip title={USERS_TEXTS.listActions.sort}>
               <IconButton
                 className="action-button"
                 size="small"
@@ -76,7 +76,7 @@ const TableHeadCell = <T,>({ column, sortDirection, onSortChange }: TableHeadCel
 
           {column.filterable && (
             <>
-              <Tooltip title={USERS_TEXTS.columnActions.filter}>
+              <Tooltip title={USERS_TEXTS.listActions.filter}>
                 <IconButton
                   className="action-button"
                   size="small"

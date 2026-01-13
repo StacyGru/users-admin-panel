@@ -4,7 +4,7 @@ import { Tooltip } from "@mui/material";
 import type { FC } from "react";
 import type { IUserListWidgetRowModel } from "widgets/user-list-widget/types";
 import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
-import { userTableStore } from "widgets/user-list-widget/model";
+import { userListStore } from "widgets/user-list-widget/model";
 
 interface IProps {
   row: IUserListWidgetRowModel;
@@ -12,8 +12,8 @@ interface IProps {
 
 const EditUserButton: FC<IProps> = (props) => {
   return (
-    <Tooltip title={USERS_TEXTS.rowActions.edit}>
-      <IconButton size="small" onClick={() => userTableStore.openEdit(props.row.id)}>
+    <Tooltip title={USERS_TEXTS.entityActions.edit}>
+      <IconButton size="small" onClick={() => userListStore.openEdit(props.row.id)}>
         <EditTwoToneIcon fontSize="small" />
       </IconButton>
     </Tooltip>

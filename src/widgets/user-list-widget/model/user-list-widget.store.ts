@@ -4,7 +4,7 @@ import type { TSortDirection } from "shared/ui/table";
 import { sortTable } from "shared/lib/table-sort";
 import { EUserRole } from "entities/user/model";
 
-class UserTableStore {
+class UserListStore {
   sortColumn: keyof IUserListWidgetRowModel | null = null;
   sortDirection: TSortDirection | null = null;
 
@@ -91,4 +91,4 @@ class UserTableStore {
   };
 }
 
-export const userTableStore = new UserTableStore();
+export const userListStore = new UserListStore();

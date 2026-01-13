@@ -6,12 +6,13 @@ export const USERS_TEXTS = {
     email: "Email",
     role: "Роль"
   },
-  columnActions: {
-    sort: "Сортировать",
-    filter: "Фильтровать"
-  },
-  rowActions: {
+  entityActions: {
+    create: "Создать",
     edit: "Редактировать",
     delete: "Удалить"
+  },
+  listActions: {
+    sort: "Сортировать",
+    filter: "Фильтровать"
   }
 } as const;

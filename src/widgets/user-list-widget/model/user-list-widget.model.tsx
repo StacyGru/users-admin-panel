@@ -5,7 +5,7 @@ import type {
 } from "widgets/user-list-widget/types";
 import { USERS_TEXTS } from "shared/config/texts";
 import { ClearableTextField } from "shared/ui/clearable-text-field";
-import { userTableStore } from "widgets/user-list-widget/model/user-list-widget.store.ts";
+import { userListStore } from "widgets/user-list-widget/model/user-list-widget.store.ts";
 import { ClearableMultiSelect } from "shared/ui/clearable-multi-select";
 import Stack from "@mui/material/Stack";
 import { EditUserButton } from "features/edit-user/ui/button/edit-user-button.view.tsx";
@@ -28,12 +28,12 @@ const getUserColumnList = (): Array<IUserListWidgetColumnModel<IUserListWidgetRo
       title: USERS_TEXTS.columns.id,
       sortable: true,
       filterable: true,
-      isFilterActive: userTableStore.filters.id !== "",
+      isFilterActive: userListStore.filters.id !== "",
       renderFilter: () => (
         <ClearableTextField
           size="small"
-          value={userTableStore.filters.id}
-          onChange={(event) => userTableStore.setFilter("id", event.target.value)}
+          value={userListStore.filters.id}
+          onChange={(event) => userListStore.setFilter("id", event.target.value)}
           label={USERS_TEXTS.columns.id}
         />
       )
@@ -43,12 +43,12 @@ const getUserColumnList = (): Array<IUserListWidgetColumnModel<IUserListWidgetRo
       title: USERS_TEXTS.columns.name,
       sortable: true,
       filterable: true,
-      isFilterActive: userTableStore.filters.name !== "",
+      isFilterActive: userListStore.filters.name !== "",
       renderFilter: () => (
         <ClearableTextField
           size="small"
-          value={userTableStore.filters.name}
-          onChange={(event) => userTableStore.setFilter("name", event.target.value)}
+          value={userListStore.filters.name}
+          onChange={(event) => userListStore.setFilter("name", event.target.value)}
           label={USERS_TEXTS.columns.name}
         />
       )
@@ -58,12 +58,12 @@ const getUserColumnList = (): Array<IUserListWidgetColumnModel<IUserListWidgetRo
       title: USERS_TEXTS.columns.email,
       sortable: true,
       filterable: true,
-      isFilterActive: userTableStore.filters.email !== "",
+      isFilterActive: userListStore.filters.email !== "",
       renderFilter: () => (
         <ClearableTextField
           size="small"
-          value={userTableStore.filters.email}
-          onChange={(event) => userTableStore.setFilter("email", event.target.value)}
+          value={userListStore.filters.email}
+          onChange={(event) => userListStore.setFilter("email", event.target.value)}
           label={USERS_TEXTS.columns.email}
         />
       )
@@ -74,12 +74,12 @@ const getUserColumnList = (): Array<IUserListWidgetColumnModel<IUserListWidgetRo
       render: (row: IUserListWidgetRowModel) => EUserRoleLabels[row.role],
       sortable: true,
       filterable: true,
-      isFilterActive: userTableStore.filters.roles.length > 0,
+      isFilterActive: userListStore.filters.roles.length > 0,
       renderFilter: () => (
         <ClearableMultiSelect
-          value={userTableStore.filters.roles}
+          value={userListStore.filters.roles}
           options={userRoleOptions}
-          onChange={(value) => userTableStore.setFilter("roles", value)}
+          onChange={(value) => userListStore.setFilter("roles", value)}
           label={USERS_TEXTS.columns.role}
           sx={{ width: 300 }}
         />

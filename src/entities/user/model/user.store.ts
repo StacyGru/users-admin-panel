@@ -15,7 +15,7 @@ class UserStore {
   }
 
   addUser(user: IUser) {
-    this.users.push(user);
+    this.users.unshift(user);
   }
 
   editUser(updatedUser: IUser) {

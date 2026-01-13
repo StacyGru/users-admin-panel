@@ -1,10 +1,11 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { CustomTable } from "shared/ui/table";
-import { getUserColumnList, getUserRowList, userTableStore } from "widgets/user-list-widget/model";
+import { getUserColumnList, getUserRowList, userListStore } from "widgets/user-list-widget/model";
 import { userStore } from "entities/user/model";
 import { DeleteUserDialog } from "features/delete-user";
 import { EditUserDialog } from "features/edit-user/ui/dialog/edit-user-dialog.view.tsx";
+import { CreateUserDialog } from "features/create-user/ui/dialog/create-user-dialog.view.tsx";
 
 const UserListWidget = observer(() => {
   useEffect(() => {
@@ -12,7 +13,7 @@ const UserListWidget = observer(() => {
   }, []);
 
   const rows = getUserRowList(userStore.users);
-  const sortedRows = userTableStore.getProcessedRows(rows);
+  const sortedRows = userListStore.getProcessedRows(rows);
 
   const columns = getUserColumnList();
 
@@ -22,22 +23,25 @@ const UserListWidget = observer(() => {
       <CustomTable
         columnList={columns}
         rowList={sortedRows}
-        sortColumn={userTableStore.sortColumn}
-        sortDirection={userTableStore.sortDirection}
-        onSortChange={userTableStore.setSort}
+        sortColumn={userListStore.sortColumn}
+        sortDirection={userListStore.sortDirection}
+        onSortChange={userListStore.setSort}
       />
 
+      {/* TODO: убрать пропсы которые можно вытащить внутри фичи */}
       <DeleteUserDialog
-        open={Boolean(userTableStore.deletingUserId)}
-        userId={userTableStore.deletingUserId}
-        onClose={userTableStore.closeDelete}
+        open={Boolean(userListStore.deletingUserId)}
+        userId={userListStore.deletingUserId}
+        onClose={userListStore.closeDelete}
       />
 
       <EditUserDialog
-        open={Boolean(userTableStore.editingUserId)}
-        userId={userTableStore.editingUserId}
-        onClose={userTableStore.closeEdit}
+        open={Boolean(userListStore.editingUserId)}
+        userId={userListStore.editingUserId}
+        onClose={userListStore.closeEdit}
       />
+
+      <CreateUserDialog />
     </>
   );
 });
