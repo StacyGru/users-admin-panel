@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { CustomTable } from "shared/ui/table";
 import { getUserColumnList, getUserRowList, userTableStore } from "widgets/user-list-widget/model";
 import { userStore } from "entities/user/model";
-import { DeleteUserDialog } from "features/delete-user/ui/dialog/delete-user-dialog.view.tsx";
+import { DeleteUserDialog } from "features/delete-user";
+import { EditUserDialog } from "features/edit-user/ui/dialog/edit-user-dialog.view.tsx";
 
 const UserListWidget = observer(() => {
   useEffect(() => {
@@ -30,6 +31,12 @@ const UserListWidget = observer(() => {
         open={Boolean(userTableStore.deletingUserId)}
         userId={userTableStore.deletingUserId}
         onClose={userTableStore.closeDelete}
+      />
+
+      <EditUserDialog
+        open={Boolean(userTableStore.editingUserId)}
+        userId={userTableStore.editingUserId}
+        onClose={userTableStore.closeEdit}
       />
     </>
   );

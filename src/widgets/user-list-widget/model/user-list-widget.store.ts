@@ -16,6 +16,8 @@ class UserTableStore {
   };
 
   deletingUserId: string | null = null;
+  editingUserId: string | null = null;
+  creatingUser: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -69,6 +71,23 @@ class UserTableStore {
 
   closeDelete = () => {
     this.deletingUserId = null;
+  };
+
+  openEdit = (id: string) => {
+    this.editingUserId = id;
+  };
+
+  closeEdit = () => {
+    this.editingUserId = null;
+  };
+
+  // TODO: подумать как оптимизировать логику открытия/закрытия модалок, возможно вынести отдельно
+  openCreate = () => {
+    this.creatingUser = true;
+  };
+
+  closeCreate = () => {
+    this.creatingUser = false;
   };
 }
 

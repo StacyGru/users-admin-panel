@@ -1,1 +1,1 @@
-export * from "./dialog-user-button.view.tsx";
+export * from "./delete-user-button.view.tsx";

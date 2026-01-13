@@ -10,6 +10,11 @@ const EUserRoleLabels: Record<EUserRole, string> = {
   [EUserRole.ADMIN]: "администратор"
 };
 
+const userRoleOptions = Object.values(EUserRole).map((role) => ({
+  value: role,
+  label: EUserRoleLabels[role]
+}));
+
 interface IUser {
   id: string;
   name: string;
@@ -17,5 +22,5 @@ interface IUser {
   role: EUserRole;
 }
 
-export { EUserRole, EUserRoleLabels };
+export { EUserRole, EUserRoleLabels, userRoleOptions };
 export type { IUser };

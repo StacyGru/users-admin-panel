@@ -1,7 +1,7 @@
 import { userStore } from "entities/user/model";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import type { FC } from "react";
+import Typography from "@mui/material/Typography";
 
 interface IProps {
   open: boolean;
@@ -20,17 +20,20 @@ const DeleteUserDialog: FC<IProps> = (props) => {
 
   const user = userStore.users.find((user) => user.id === props.userId);
 
+  // TODO: вынести текст в константы
   return (
     <Dialog open={props.open} onClose={props.onClose}>
-      <DialogTitle>Удалить пользователя {user?.name}?</DialogTitle>
+      <DialogTitle>Удаление пользователя</DialogTitle>
 
       <DialogContent>
-        <Typography>Это действие нельзя отменить</Typography>
+        <Typography>Вы уверены что хотите удалить пользователя {user?.name}?</Typography>
       </DialogContent>
 
-      <DialogActions>
-        <Button onClick={props.onClose}>Отмена</Button>
-        <Button color="error" onClick={handleDelete}>
+      <DialogActions sx={{ px: 3, pb: 2 }}>
+        <Button onClick={props.onClose} sx={{ color: "text.secondary" }}>
+          Отмена
+        </Button>
+        <Button variant="outlined" color="error" onClick={handleDelete}>
           Удалить
         </Button>
       </DialogActions>

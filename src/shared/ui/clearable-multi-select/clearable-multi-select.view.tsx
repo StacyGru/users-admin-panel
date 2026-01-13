@@ -11,8 +11,8 @@ import {
   type SelectChangeEvent,
   type SelectProps
 } from "@mui/material";
-import type { SelectOption } from "./clearable-multi-select.types.ts";
 import React from "react";
+import type { SelectOption } from "shared/types";
 
 export type ClearableMultiSelectProps<T extends string | number> = Omit<
   SelectProps<T[]>,
@@ -35,7 +35,7 @@ const ClearableMultiSelect = <T extends string | number>({
     onChange(event.target.value as T[]);
   };
 
-  const labelId = "clearable-multi-select-label";
+  const labelId = React.useId();
 
   const optionsMap = React.useMemo(
     () => new Map(options.map((option) => [option.value, option.label])),

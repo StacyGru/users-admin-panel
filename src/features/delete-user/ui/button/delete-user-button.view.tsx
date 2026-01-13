@@ -13,11 +13,7 @@ interface IProps {
 const DeleteUserButton: FC<IProps> = (props) => {
   return (
     <Tooltip title={USERS_TEXTS.rowActions.delete}>
-      <IconButton
-        size="small"
-        color="error"
-        onClick={() => userTableStore.openDelete(props.row.id)}
-      >
+      <IconButton size="small" onClick={() => userTableStore.openDelete(props.row.id)}>
         <DeleteOutlineTwoToneIcon fontSize="small" />
       </IconButton>
     </Tooltip>
