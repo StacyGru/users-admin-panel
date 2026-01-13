@@ -5,6 +5,7 @@ import { UserForm } from "entities/user/form";
 import { EUserRole, type IUser, userStore } from "entities/user/model";
 import { userListStore } from "widgets/user-list-widget/model";
 import { generateUserId } from "entities/user/lib";
+import { BASE_TEXTS, USERS_TEXTS } from "shared/config/texts";
 
 const emptyUser: IUser = {
   id: "",
@@ -34,7 +35,6 @@ const CreateUserDialog = observer(() => {
     userListStore.closeCreate();
   };
 
-  // TODO: вынести текст в константы
   return (
     <Dialog
       open={userListStore.creatingUser}
@@ -42,7 +42,7 @@ const CreateUserDialog = observer(() => {
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle>Добавление пользователя</DialogTitle>
+      <DialogTitle>{USERS_TEXTS.dialogs.create.title}</DialogTitle>
 
       <DialogContent>
         <UserForm value={formData} onChange={setFormData} onSubmit={handleSubmit} />
@@ -50,11 +50,10 @@ const CreateUserDialog = observer(() => {
 
       <DialogActions sx={{ px: 3, pb: 2 }}>
         <Button onClick={userListStore.closeCreate} sx={{ color: "text.secondary" }}>
-          Отмена
+          {BASE_TEXTS.buttons.cancel}
         </Button>
-        <Button onClick={handleSubmit} variant="outlined" color="success">
-          Добавить
         <Button form="user-form" type="submit" variant="outlined" color="success">
+          {BASE_TEXTS.buttons.create}
         </Button>
       </DialogActions>
     </Dialog>

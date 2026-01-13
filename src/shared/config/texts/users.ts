@@ -14,5 +14,17 @@ export const USERS_TEXTS = {
   listActions: {
     sort: "Сортировать",
     filter: "Фильтровать"
+  },
+  dialogs: {
+    create: {
+      title: "Создание пользователя"
+    },
+    edit: {
+      title: "Редактирование пользователя"
+    },
+    delete: {
+      title: "Удаление пользователя",
+      text: "Вы уверены что хотите удалить пользователя {name}?"
+    }
   }
 } as const;

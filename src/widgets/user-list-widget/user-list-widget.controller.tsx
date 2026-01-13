@@ -5,7 +5,7 @@ import { getUserColumnList, getUserRowList, userListStore } from "widgets/user-l
 import { userStore } from "entities/user/model";
 import { DeleteUserDialog } from "features/delete-user";
 import { EditUserDialog } from "features/edit-user/ui/dialog/edit-user-dialog.view.tsx";
-import { CreateUserDialog } from "features/create-user/ui/dialog/create-user-dialog.view.tsx";
+import { CreateUserDialog } from "features/create-user";
 
 const UserListWidget = observer(() => {
   useEffect(() => {
@@ -19,7 +19,6 @@ const UserListWidget = observer(() => {
 
   return (
     <>
-      {/* TODO: решить проблемы с типами */}
       <CustomTable
         columnList={columns}
         rowList={sortedRows}
@@ -28,20 +27,9 @@ const UserListWidget = observer(() => {
         onSortChange={userListStore.setSort}
       />
 
-      {/* TODO: убрать пропсы которые можно вытащить внутри фичи */}
-      <DeleteUserDialog
-        open={Boolean(userListStore.deletingUserId)}
-        userId={userListStore.deletingUserId}
-        onClose={userListStore.closeDelete}
-      />
-
-      <EditUserDialog
-        open={Boolean(userListStore.editingUserId)}
-        userId={userListStore.editingUserId}
-        onClose={userListStore.closeEdit}
-      />
-
       <CreateUserDialog />
+      <EditUserDialog />
+      <DeleteUserDialog />
     </>
   );
 });

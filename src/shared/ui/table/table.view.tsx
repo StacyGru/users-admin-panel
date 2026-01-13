@@ -9,6 +9,7 @@ import type { ITableColumn, ITableRow, TSortDirection } from "shared/ui/table";
 import { TableHeadCell } from "shared/ui/table/ui";
 import Stack from "@mui/material/Stack";
 import { blue } from "@mui/material/colors";
+import { BASE_TEXTS } from "shared/config/texts";
 
 interface CustomTableProps<T extends ITableRow> {
   columnList: Array<ITableColumn<T>>;
@@ -71,8 +72,7 @@ const CustomTable = <T extends ITableRow>({
                 }}
               >
                 <Stack alignItems="center" justifyContent="center">
-                  Записи не найдены. Проверьте параметры фильтрации или убедитесь, что в таблице
-                  есть данные
+                  {BASE_TEXTS.table.emptyMessage}
                 </Stack>
               </TableCell>
             </TableRow>

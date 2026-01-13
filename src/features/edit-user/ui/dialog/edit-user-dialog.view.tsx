@@ -4,15 +4,12 @@ import { userStore } from "entities/user/model";
 import { observer } from "mobx-react-lite";
 import { UserForm } from "entities/user/form";
 import { type FC, useEffect, useState } from "react";
+import { userListStore } from "widgets/user-list-widget/model";
+import { BASE_TEXTS, USERS_TEXTS } from "shared/config/texts";
 
-interface IProps {
-  open: boolean;
-  userId: string | null;
-  onClose: () => void;
-}
-
-const EditUserDialog: FC<IProps> = observer(({ open, userId, onClose }) => {
-  const user = userStore.users.find((user) => user.id === userId);
+const EditUserDialog: FC = observer(() => {
+  const open = Boolean(userListStore.editingUserId);
+  const user = userStore.users.find((user) => user.id === userListStore.editingUserId);
 
   const [formData, setFormData] = useState<IUser | null>(null);
 
@@ -24,28 +21,30 @@ const EditUserDialog: FC<IProps> = observer(({ open, userId, onClose }) => {
 
   if (!user || !formData) return null;
 
+  const handleClose = () => {
+    userListStore.closeEdit();
+  };
+
   const handleSubmit = () => {
     userStore.editUser(formData);
     userStore.save();
-    onClose();
+    handleClose();
   };
 
-  // TODO: вынести текст в константы
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>Редактирование пользователя</DialogTitle>
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+      <DialogTitle>{USERS_TEXTS.dialogs.edit.title}</DialogTitle>
 
       <DialogContent>
         <UserForm value={formData} onChange={setFormData} onSubmit={handleSubmit} />
       </DialogContent>
 
       <DialogActions sx={{ px: 3, pb: 2 }}>
-        <Button onClick={onClose} sx={{ color: "text.secondary" }}>
-          Отмена
+        <Button onClick={handleClose} sx={{ color: "text.secondary" }}>
+          {BASE_TEXTS.buttons.cancel}
         </Button>
-        <Button onClick={handleSubmit} variant="outlined" color="success">
-          Сохранить
         <Button form="user-form" type="submit" variant="outlined" color="success">
+          {BASE_TEXTS.buttons.save}
         </Button>
       </DialogActions>
     </Dialog>

@@ -7,7 +7,6 @@ import { EUserRole } from "entities/user/model";
 class UserListStore {
   sortColumn: keyof IUserListWidgetRowModel | null = null;
   sortDirection: TSortDirection | null = null;
-
   filters: IUserTableFilters = {
     id: "",
     name: "",
@@ -15,9 +14,9 @@ class UserListStore {
     roles: []
   };
 
-  deletingUserId: string | null = null;
-  editingUserId: string | null = null;
   creatingUser: boolean = false;
+  editingUserId: string | null = null;
+  deletingUserId: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -65,12 +64,12 @@ class UserListStore {
     return this.getSortedRows(filtered);
   }
 
-  openDelete = (id: string) => {
-    this.deletingUserId = id;
+  openCreate = () => {
+    this.creatingUser = true;
   };
 
-  closeDelete = () => {
-    this.deletingUserId = null;
+  closeCreate = () => {
+    this.creatingUser = false;
   };
 
   openEdit = (id: string) => {
@@ -81,13 +80,12 @@ class UserListStore {
     this.editingUserId = null;
   };
 
-  // TODO: подумать как оптимизировать логику открытия/закрытия модалок, возможно вынести отдельно
-  openCreate = () => {
-    this.creatingUser = true;
+  openDelete = (id: string) => {
+    this.deletingUserId = id;
   };
 
-  closeCreate = () => {
-    this.creatingUser = false;
+  closeDelete = () => {
+    this.deletingUserId = null;
   };
 }
 
